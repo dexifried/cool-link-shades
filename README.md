@@ -1,22 +1,23 @@
-# Cool Link Shades — frozen experimental snapshot
+# Cool Link Shades
 
-This repository freezes the newer-looking Adult Link sunglasses revision tested in an isolated Lichii build-177 profile with Ocarina of Time remake update 2.0.0 (title ID `0400486024DEC000`). The `mod/` folder contains the exact files installed in the two previously configured Lichii/Eden profiles. The glasses are a head-bound mesh using the game's lighting; they do not alter gameplay logic or saves.
+Adult Link wears chunky, dark sunglasses inspired by the classic meme. This experimental cosmetic mod is for the Ocarina of Time remake, update 2.0.0, title ID `0400486024DEC000`, on Lichii for Windows. The head-bound mesh uses the game's lighting and does not change game logic or saves.
 
-The green outfit displayed without the previous black patches in the tested equipment view. The glasses were also visible in a dark dungeon gameplay view after brief movement and in a sword-drawn stance. This is still experimental: rolling, the full range of combat animations, outdoor lighting, cutscenes, other equipment, and distant rendering have not been conclusively verified. The bridge or sides may appear too bright in other lighting, and some hair overlap is expected.
+## Hover Boots update
+
+The original release used a normal-boot material, which the game hides when Hover Boots or Iron Boots are equipped. This update moves the glasses out of that visibility group while retaining the same mesh, textures, head binding, and shader. The original teeth material is moved to an existing extra material slot. In a diagnostic build, moving the teeth made it possible to confirm they rendered in that slot; the released model keeps them in their normal position.
+
+In an isolated Lichii build-177 profile, this revision was visible with Hover Boots and the green and blue tunics in the equipment view, and with Iron Boots and the green tunic in the equipment view. The owner reported that the previous release worked outdoors and in cutscenes; those scenarios have not yet been rechecked for this revision. Full gameplay animation, rolling, other equipment, and distant rendering remain unverified. Hair overlap is expected; the bridge or sides may appear too bright in some lighting. Only the two largest texture mip levels were edited in the original release.
 
 ## Install or uninstall
 
-Download the release ZIP and extract it. With Lichii closed, copy the enclosed `Cool Link Shades (experimental)` folder to `%APPDATA%\eden\load\0400486024DEC000\`, then enable it in the game's add-ons. The mod folder must contain `romfs/` directly inside it. Alternatively, copy the repository's `mod/` folder to the same location and rename it. To uninstall, close Lichii and disable or remove only that mod folder. Other profiles may use their own `user/load/0400486024DEC000/` folder.
+Download the latest release ZIP and extract it. With Lichii closed, replace the previous `Cool Link Shades (experimental)` folder under `%APPDATA%\eden\load\0400486024DEC000\` with the folder from the ZIP, then enable it in the game's add-ons. The mod folder must contain `romfs/` directly inside it. Portable profiles may use their own `user/load/0400486024DEC000/` folder. To uninstall, close Lichii and disable or remove only that mod folder.
 
-The four game assets changed by this snapshot are listed with SHA-256 hashes in `SHA256SUMS`. Run `python verify_snapshot.py` to check them. The screenshot files under `screenshots/` show this exact model in the isolated test.
+The mod replaces `romfs/Model/Player_Adult.Player_Adult.bfres.zs` and three `Mt_Boots_Player_Adult` albedo, normal, and roughness textures under `romfs/Tex/`. It conflicts with other mods replacing those same files. Other game updates have not been tested. `SHA256SUMS` lists the release files; run `python verify_snapshot.py` to check them.
 
-The model conflicts with other Adult Link model replacements. The three boot-texture overrides conflict with other mods replacing those same textures. Only the two largest texture mip levels were edited, so distant rendering remains unverified. Other game updates have not been tested.
+The original revision remains available in the `experimental-1.0` release and the `frozen-shared-lit` tag.
 
-## Model build and source
+## Rebuilding
 
-The Python scripts and the reference parser used for the model build are included. Rebuilding requires Python with `zstandard`, the matching extracted 2.0.0 `Model/Player_Adult.Player_Adult.bfres.zs`, and `Pack/ZsDic.pack.zs`. Set `OOT_ROMFS` to the extracted romfs directory; it defaults to `~/Games/Hookshot/romfs`. Confirm that the source model matches the installed game/update before rebuilding.
+From a full Git clone containing the `frozen-shared-lit` tag, use Python with `zstandard` installed. Supply the original game's `Pack/ZsDic.pack.zs` via `OOT_ROMFS` pointing to an extracted romfs; it defaults to `~/Games/Hookshot/romfs`. Run `python experimental/build_boot_visibility_fix.py`. The script checks the frozen 1.0 model's hash, uses it as the input, and writes the rebuilt model under ignored `build/`. It does not independently recreate the mesh or textures.
 
-Run `python experimental/build_shared_vertex_lit_diagnostic.py`. It reads the glasses geometry from the checked-in frozen model as a template and writes a new file under ignored `build/`; it does not regenerate the glasses mesh independently. For the original source assets and environment, the rebuilt compressed model was byte-identical to the frozen model. The texture authoring experiments remain in the original workspace; the final texture files themselves are frozen in `mod/`.
-
-The included `bfres.py` and `nxfmt.py` derive from [OoT-Character-Select](https://github.com/snaildev99/OoT-Character-Select); its MIT license is preserved in `reference/OoT-Character-Select/LICENSE`. The model and textures are modified game-derived assets; the original game assets belong to their respective rights holders.
-
+The model and textures are modified game-derived assets; original game assets belong to their respective rights holders. The included reference tools derive from [OoT-Character-Select](https://github.com/snaildev99/OoT-Character-Select); its MIT license is preserved under `reference/`.
