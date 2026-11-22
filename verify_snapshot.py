@@ -19,5 +19,5 @@ for line in (root / "SHA256SUMS").read_text(encoding="utf-8").splitlines():
         print(f"OK {relative}")
 if errors:
     raise SystemExit("\n".join(errors))
-print("Frozen mod assets match SHA256SUMS.")
+print("Mod assets match SHA256SUMS.")
 

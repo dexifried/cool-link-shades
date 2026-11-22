@@ -1,9 +1,7 @@
-# Cool Link Shades — experimental 1.0
+# Cool Link Shades — experimental 1.1
 
-Adult Link wears black, head-bound sunglasses inspired by the classic meme. The lenses use in-game lighting. This is the shared-lit revision from commit 04b0e9f, tested with Ocarina of Time remake update 2.0.0 and Lichii build 177.
+This update fixes the sunglasses disappearing when Hover Boots or Iron Boots are equipped in the tested equipment views. It retains the 1.0 mesh, head binding, textures, and shader. The original teeth material is reassigned to an existing extra slot; a displaced-teeth diagnostic confirmed that slot renders, while the released model keeps the original teeth geometry.
 
-Download the ZIP, extract it, and copy the enclosed `Cool Link Shades (experimental)` folder to `%APPDATA%\eden\load\0400486024DEC000\`. Enable it in the game's add-ons. See the included README for uninstall steps and conflicts.
+Tested in an isolated Lichii build-177 profile with game update 2.0.0: Hover Boots with green and blue tunics and Iron Boots with the green tunic in the equipment view. The owner reported that 1.0 worked outdoors and in cutscenes; those situations and full gameplay animation have not been rechecked for 1.1. Rolling, other equipment, and distant rendering still need testing. The bridge or sides may appear too bright in some lighting. Only the two largest texture mips were edited in the original release.
 
-The green outfit displayed without the previous black patches in the tested equipment view. The glasses were also seen in a dark dungeon, after brief movement and with the sword drawn. Rolling, full combat animations, outdoor lighting, cutscenes, other equipment, and distant rendering are not fully verified. The glasses may overlap hair, and the bridge or sides might appear too light in other lighting. The three boot textures contain experimental patches only in the two largest mip levels. This conflicts with mods replacing the same Adult Link model or boot textures.
-
-The package contains a modified game model and three modified game textures. It does not include saves, emulator configuration, keys, firmware, or the game itself.
+With Lichii closed, replace the old mod folder with the folder in the ZIP. The previous release remains available as `experimental-1.0`.
