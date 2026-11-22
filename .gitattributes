@@ -1,0 +1,7 @@
+*.bfres.zs binary
+*.bntx.zs binary
+*.png binary
+*.py text eol=lf
+*.md text eol=lf
+SHA256SUMS text eol=lf
+
